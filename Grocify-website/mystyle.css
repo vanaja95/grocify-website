@@ -516,6 +516,8 @@ body{
     height: 100vh;
 }
 */
+
+/* account page login and register page start csss*/
 .account-page{
 
     
@@ -721,86 +723,75 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+/* account page login and register page ends csss*/
 
 
+/* category page css starts*/
 
 
-
-
-
-
-
-/*.form-container{
-background: #fff;
-width:400px;
-height:500px;
-position:relative;
-text-align: center;
-padding:5px 0;
-margin:auto;
-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 1);
-position:absolute;
-top:60%;left:15%;
-transform:translateY(-50%);
-}
-.form-container span{
-font-weight: bold;
-padding:0 10px;
-color:var(--black);
-cursor:pointer;
-width:100px;
-display:inline-block;
-font-size:2rem;
-}
-.form-btn{
-    display:inline-block;
-    padding:2rem;
-    
-}
-.form-container form{
-    max-width:300px;
-    padding:0 10px;
-    position:absolute;
-    top:130px;
-    left:15%;
- 
-   
+.category-page{
+   display:flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+  
   
 }
-form input{
-    border:1px solid var(--light-color);
-    width:100%;
-    height: 30px;
-    margin: 10px 0;
-    padding: 0 10px;
-    border:1px solid #ccc;
-
+.category-page.category-image{
+    flex:1 1 40rem;
+    
 }
-form .btn{
-    width:100%;
-    border:none;
-    margin:10px 0;
+.category-image img{
+    width:160rem;
+    height:100%;
+    object-fit:cover;
+    flex:1 1 40rem;
 }
-form .btm:focus{
-    outline:none;
+.category-content{
+    flex: 1 1 40rem;
+    position:absolute;
+    top:50%;left:15%;
+    transform:translateY(-50%);
+    
 }
-#LoginFrom{
-   left:-300px;
+.category-content .sn{
+    font-size: 1rem;
+    color: #030303;
 }
-#RegForm{
-  left:0;
+.category-content h3{
+    font-size:5rem ;
+    color:var(--black);
 }
-form a{
-   font-size: 12px; 
+.category-content h3 span{
+    color:var(--green);
 }
-#indicator{
-    width:100px;
-    border:none;
-    background: #000000;
-    height:3px;
-    margin-top: 8px;
-    transform: translateX(100px);
-}*/
+.category-content p{
+    font-size:1.5rem;
+    color:var(--light-color);
+}
+.category-container{
+    display:flex;
+    gap:1.5rem;
+    
+}
+.category-container .category-box{
+    border:.5rem solid rgba(0,0,0,.3);
+    border-radius: .5rem;
+    text-align: center;
+    padding:2rem;
+    flex:1 1 25rem;
+}
+.category-box img{
+    width:80%;
+    margin:2rem 0;
+}
+.category-box h3{
+    font-size: 2.5rem;
+    color:var(--black)
+}
+.category-box p{
+    font-size:1.5rem;
+}
 
 
 
@@ -809,7 +800,10 @@ form a{
 
 
 
-/* account page logon and sinup page start css*/
+
+/* category page css ends*/
+
+
 
 
 
@@ -819,17 +813,18 @@ form a{
 /* footer css */
 
 footer{
+    
     background-color:#ace6f3;
     background-size: cover;
+    padding:2rem ;
+   
 }
  .box-container{
    
    display:flex;
    justify-content: space-between;
    padding:40px 100px;
-   align-content: space-between;
-   column-gap:10rem;
-   padding-left: 25px;
+   align-content:center;
    padding:2rem 1rem;
     
 }
@@ -874,19 +869,20 @@ footer{
     color:var(--black);
     margin-left:.2rem;
     color:var(--light-color);
+    justify-content:space-evenly;
 }
 .footer .box-container .box .share a i:hover{
     color:var(--black);
 }
 .footer .box-container .box img{
     padding:1rem;
-    width:80%;
+    width:50%;
     height:20%;
 }
 
 .footer .box-container .box #emailid{
-    width:70%;
-    height:10%;
+    width:50%;
+    height:15%;
     margin: .7rem 0;
     padding:1rem;
     border-radius: .5rem;
@@ -983,6 +979,9 @@ footer{
     } 
     .product.title{
         font-size: 4rem;
+    }
+    .category-content{
+        text-align: center;
     }
 }
     @media (max-width:450px){
