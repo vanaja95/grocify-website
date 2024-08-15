@@ -757,7 +757,7 @@ body{
 .category-content{
     flex: 1 1 40rem;
     position:absolute;
-    top:90%;left:10%;
+    top:60%;left:10%;
     transform:translateY(-50%);
     
 }
