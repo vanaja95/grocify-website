@@ -6,7 +6,7 @@
     <title>Grocify website</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-   
+    
 
 
      <!--font awesome cdn link-->
@@ -46,7 +46,8 @@
                         <a href="reviews.html">reviews</a>
                     </nav>
                     <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <span id="cart-count">0</span>
+                        <a href="cart.html" class="fas fa-shopping-cart"></a>
                         <a href="#" class="fa fa-heart"></a>
                         <a href="login.html" class="fas fa-user"></a>
                     </div>
@@ -75,35 +76,35 @@
             <h3>Fruits</h3>
             <p>upto 40% off</p>
             <img src="images/fruits-1.png">
-            <a href="fruit.html" class="btn">shop now</a>
+            <a href="fruit.html" class="button">shop now</a>
         </div>
 
         <div class="category-box">
             <h3>vegitables</h3>
             <p>upto 50% off</p>
             <img src="images/vegitables1.png" alt="">
-            <a href="vegitable.html" class="btn">shop now</a>
+            <a href="vegitable.html" class="button">shop now</a>
         </div>
 
         <div class="category-box">
             <h3>spices</h3>
             <p>upto 35% off</p>
             <img src="images/spice-3.jpeg" alt="">
-            <a href="spices.html" class="btn">shop now</a>
+            <a href="spices.html" class="button">shop now</a>
         </div>
 
         <div class="category-box">
             <h3>Meat</h3>
             <p>upto 20% off</p>
             <img src="images/meat-1.png"alt="">
-            <a href="meat.html" class="btn">shop now</a>
+            <a href="meat.html" class="button">shop now</a>
         </div>
 
         <div class="category-box">
             <h3>Wheat</h3>
             <p>upto 15% off</p>
             <img src="images/wheat2.jpeg"width="20%" alt="">
-            <a href="wheat.html" class="btn">shop now</a>
+            <a href="wheat.html" class="button">shop now</a>
         </div>
     </div>
 
@@ -113,7 +114,7 @@
 
 <section class="product">
     <div class="box-container">
-        <div class="box">
+        <div class="box" id="product-6">
             <span class ="discount">-35% </span>
             <div class="icon">
                 <a href ="#" class="fas fa-heart"></a>
@@ -132,7 +133,7 @@
         </div>
         
         
-        <div class="box">
+        <div class="box" id="product-8">
             <span class ="discount">-33% </span>
             <div class="icon">
                 <a href ="#" class="fas fa-heart"></a>
@@ -153,7 +154,7 @@
         </div>
         
         
-        <div class="box">
+        <div class="box" id="product-9">
             <span class ="discount">-33% </span>
             <div class="icon">
                 <a href ="#" class="fas fa-heart"></a>
@@ -972,3 +973,8 @@
 
 
               <!--footer section ends-->
+              <script src="cart.js"></script>
+    
+</body>
+</html>
+   
