@@ -251,6 +251,7 @@ section{
         justify-content: center;
         flex-wrap:wrap;
         gap:8.5rem;
+       
     
      }
      .product-home .image{
@@ -276,6 +277,7 @@ section{
 
 .product{
     flex: 1 1 40rem;
+
 }
 
 
@@ -289,6 +291,7 @@ section{
         margin-bottom:3rem;
         color:var(--black);
         padding:1rem 9%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 
     }
     .product .product-page span{
@@ -320,6 +323,7 @@ section{
         border-radius: .5rem;
         overflow:hidden;
         position:relative;
+        box-shadow: 0 0 10px rgba(62, 54, 54, 0.6);
      }
      .product .box-container .box img{
         height: 20rem;
@@ -412,54 +416,68 @@ section{
 
 
 /* cart section start*/
-/*form{
-    padding:2rem 9%;
-}*/
 
 .notification {
-    background-color: #4CAF50; /* Green */
-    color: white;
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
     text-align: center;
+    border-radius: 2px;
     padding: 16px;
     position: fixed;
     z-index: 1;
-    right: 30px;
-    top: 30px;
-    border-radius: 5px;
-    opacity: 0;
-    transform: translateY(-50%);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
 }
 
 .notification.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-.about-cart td{
-    font-size: 4rem;
-    color:var(--black);
-    
-    
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-#cart-heading{
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding:4rem;
-    width:100%;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-top: 1px solid #101010;
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
 }
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
+
+
+
+
+
+
+
 .cart{
-    position: relative;
+    position:relative;
     align-items: center;
-    justify-content: center;
-    
-
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border:1px solid var(--light-color);
+    outline-color: var(--light-color);
 }
 .cart  h2{
     font-size:5rem;
@@ -506,16 +524,21 @@ section{
 .cart-quantity{
     border:1px solid var(--light-color);
     outline-color: var(--light-color);
-    width:4.4rem;
+    width:8.4rem;
     height: 2.5rem;
     text-align: center;
     font-size: 1rem;
+    color:black;
+    font-size: 1.5rem;
+
+ 
 }
 .cart-remove{
     font-size: 24px;
     color:var(--black);
     cursor: pointer;
     left:20px;
+    align-items: end;
 }
 .cart-remove:hover{
     color:var(--green);
@@ -537,13 +560,21 @@ section{
     font-size: 2rem;
     margin-left: 5.5rem;
 }
-#close-cart{
-    position:absolute;
-    top:1rem;
-    right:0.8rem;
-    font-size: 2rem;
-    color:var(--black);
+.buttons{
+
+    display: block;
+    padding:2rem;
+    width: 30%;
+    padding:15px;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    font-size: 18px;
     cursor: pointer;
+
+}
+.buttons:hover{
+    background-color: var(--black);
 }
 
 
@@ -787,85 +818,144 @@ body{
 /* category page css starts*/
 
 
-.category-page{
-   display:flex;
-   align-items: center;
-   justify-content: center;
-   flex-wrap: wrap;
+
+.product-home{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    gap:8.5rem;
+   
+
+ }
+ .product-home .image{
+   flex: 1 1 40rem;
+   padding-top:5rem;
   
-  
-}
-.category-page.category-image{
-    flex:1 1 40rem;
-    
-}
-.category-image img{
-    width:140rem;
-    height:100%;
-    object-fit:cover;
-    flex:1 1 40rem;
-    
-}
-.category-content{
+ }
+ .product-home .image img{
+    width:200%
+ }
+ 
+ .product-home .content{
     flex: 1 1 40rem;
-    position:absolute;
-    top:60%;left:10%;
-    transform:translateY(-50%);
-    
+ }
+ .product-home .content span{
+    font-size: 3rem;
+    color:var(--light-color)
+ }
+ .product-home .content h3{
+    font-size: 5rem;
+    color:var(--black);
+ }
+
+
+
+
+/* Container for the category page layout */
+.category-page {
+    position: relative; /* Ensure positioning context */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8.5rem;
 }
-.category-content .sn{
+
+/* Styling for category image section */
+.category-image {
+    flex: 1 1 40rem;
+}
+
+.category-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 160rem;
+}
+
+/* Styling for category content section */
+.category-content {
+    flex: 1 1 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically within the container */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text within the content box */
+    position: relative; /* Change to relative if absolute causes issues */
+    padding: 2rem; /* Add padding to avoid content sticking to edges */
+}
+
+.category-content .sn {
     font-size: 1rem;
     color: #030303;
 }
-.category-content h3{
-    font-size:5rem ;
-    color:var(--black);
+
+.category-content h3 {
+    font-size: 5rem;
+    color: var(--black);
 }
-.category-content h3 span{
-    color:var(--green);
+
+.category-content h3 span {
+    color: var(--green);
 }
-.category-content p{
-    font-size:1.5rem;
-    color:var(--light-color);
+
+.category-content p {
+    font-size: 1.5rem;
+    color: var(--light-color);
 }
-.category-container{
-    display:flex;
-    gap:1.5rem;
-    padding:4rem;
-    
+
+
+/* Container for category boxes */
+.category-container {
+    display: flex;
+    gap: 1.5rem;
+    padding: 4rem;
+    flex-wrap: wrap; /* Ensures items wrap to next line on smaller screens */
 }
-.category-container .category-box{
-    border:.5rem solid rgba(0,0,0,.3);
+
+/* Styling for individual category boxes */
+.category-box {
+    border: .3rem solid rgba(0, 0, 0, .4);
     border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
     text-align: center;
-    padding:2rem;
-    flex:1 1 25rem;
+    padding: 2rem;
+    flex: 1 1 25rem;
 }
-.category-box img{
-    width:80%;
-    margin:2rem 0;
+
+.category-box img {
+    width: 80%;
+    margin: 2rem 0;
 }
-.category-box h3{
+
+.category-box h3 {
     font-size: 2.5rem;
-    color:var(--black)
+    color: var(--black);
 }
-.category-box p{
-    font-size:1.5rem;
+
+.category-box p {
+    font-size: 1.5rem;
 }
-.button{
+
+/* Styling for buttons */
+.button {
     margin-top: 1rem;
     display: inline-block;
     font-size: 1.7rem;
-    color:#fff;
+    color: #fff;
     background: var(--green);
     border-radius: .5rem;
     cursor: pointer;
-    padding:.8rem 3rem;
+    padding: .8rem 3rem;
+    text-align: center; /* Ensures text is centered in the button */
 }
-.button:hover{
+
+.button:hover {
     background: var(--black);
-    letter-spacing: .1rem;
 }
+
 
 
 

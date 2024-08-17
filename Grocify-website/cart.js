@@ -1,5 +1,3 @@
-/* script.js */
-
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Function to add product to cart
@@ -9,10 +7,10 @@ function addToCart(productId) {
         console.log('Product not found: ' + productId);
         return;
     }
-    
+
     let title = product.querySelector('h3').innerText;
     let price = product.querySelector('.price').innerText;
-    let quantity = product.querySelector('.quantity input').value;
+    let quantity = product.querySelector('.cart-quantity').value;
     let imgSrc = product.querySelector('img').src;
 
     let productObj = {
@@ -34,8 +32,23 @@ function addToCart(productId) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    updateCartCount();
-    loadCart(); // Optional: If you want to update the cart page immediately
+    updateCartCount();  // Update cart count after adding product
+    showNotification(); // Show notification after adding product
+}
+
+// Function to display a notification
+function showNotification() {
+    alert("Your product has been added to the cart!");
+
+    var notification = document.getElementById("cart-notification");
+    if (notification) {
+        notification.className = "notification show";
+
+        // Hide the notification after 3 seconds
+        setTimeout(function(){
+            notification.className = notification.className.replace("show", ""); 
+        }, 3000);
+    }
 }
 
 // Function to update cart count
@@ -44,6 +57,12 @@ function updateCartCount() {
     let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     document.getElementById('cart-count').innerText = cartCount;
 }
+
+// Ensure cart count is updated on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    loadCart();
+});
 
 // Attach event listeners to "Add to Cart" buttons
 document.querySelectorAll('.btn').forEach(button => {
@@ -57,6 +76,8 @@ document.querySelectorAll('.btn').forEach(button => {
 // Function to load and display cart items on the cart page
 function loadCart() {
     let cartContainer = document.querySelector('.cart-contant');
+    if (!cartContainer) return;  // Return if the cart container is not present
+
     cartContainer.innerHTML = '';
 
     if (cart.length === 0) {
@@ -69,7 +90,7 @@ function loadCart() {
                     <div class="detail-box">
                         <div class="cart-product-title">${item.title}</div>
                         <div class="cart-price">${item.price}</div>
-                        <input type="number" value="${item.quantity}" class="cart-quantity" disabled>
+                        <input type="number" value="${item.quantity}" class="cart-quantity" data-index="${index}">
                     </div>
                     <i class="fa fa-trash cart-remove" data-index="${index}"></i>
                 </div>
@@ -78,6 +99,7 @@ function loadCart() {
     }
 
     updateTotal();
+    attachCartEventListeners(); // Attach event listeners to cart items
 }
 
 // Function to update total price
@@ -97,14 +119,39 @@ function removeItemFromCart(index) {
     loadCart();
 }
 
-// Load cart items when the cart page loads
-document.addEventListener('DOMContentLoaded', () => {
-    loadCart();
+// Function to handle quantity changes in the cart
+function quantityChanged(event) {
+    const input = event.target;
+    const index = input.getAttribute('data-index');
+    let newQuantity = parseInt(input.value);
 
-    document.querySelector('.cart-contant').addEventListener('click', (event) => {
-        if (event.target.classList.contains('cart-remove')) {
-            let index = event.target.getAttribute('data-index');
+    if (isNaN(newQuantity) || newQuantity <= 0) {
+        newQuantity = 1;
+        input.value = 1;
+    }
+
+    cart[index].quantity = newQuantity;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateTotal();
+    updateCartCount(); // Update cart count after quantity change
+}
+
+// Attach event listeners to cart items
+function attachCartEventListeners() {
+    document.querySelectorAll('.cart-remove').forEach(button => {
+        button.addEventListener('click', (event) => {
+            let index = button.getAttribute('data-index');
             removeItemFromCart(index);
-        }
+        });
     });
+
+    document.querySelectorAll('.cart-quantity').forEach(input => {
+        input.addEventListener('change', quantityChanged);
+    });
+}
+
+// Trigger a thank you message after a purchase
+document.querySelector('.btn-purchase').addEventListener('click', function() {
+    alert('Thank you for your purchase!');
+    // Additional purchase logic here
 });
