@@ -1,3 +1,52 @@
+
+
+let menu = document.querySelector('#menu-bar');
+let navbar = document.querySelector('.navbar');
+let header = document.querySelector('.header-2');
+
+// Add click event listener to the menu icon
+menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+});
+
+// Optional: Close the menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && !navbar.contains(event.target)) {
+        menu.classList.remove('fa-times');
+        navbar.classList.remove('active');
+    }
+});
+
+
+
+//searchbar js  
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBox = document.getElementById("search-box");
+
+    searchBox.addEventListener("input", () => {
+        const searchQuery = searchBox.value.toLowerCase();
+        const productBoxes = document.querySelectorAll(".box");
+
+        productBoxes.forEach(box => {
+            const productName = box.querySelector("h3").textContent.toLowerCase();
+            
+            if (productName.includes(searchQuery)) {
+                box.style.display = "block"; // Show product
+            } else {
+                box.style.display = "none"; // Hide product
+            }
+        });
+    });
+});
+
+
+
+
+
+
+// cart page
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Function to add product to cart
@@ -53,14 +102,21 @@ function showNotification() {
 
 // Function to update cart count
 function updateCartCount() {
+    // Reload cart from localStorage to ensure it's up-to-date
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-    document.getElementById('cart-count').innerText = cartCount;
+
+    let cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.innerText = cartCount;
+    } else {
+        console.error("Cart count element not found");
+    }
 }
 
 // Ensure cart count is updated on page load
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
+    updateCartCount(); // Make sure to call this on all pages where cart count needs to be displayed
     loadCart();
 });
 
@@ -155,3 +211,20 @@ document.querySelector('.btn-purchase').addEventListener('click', function() {
     alert('Thank you for your purchase!');
     // Additional purchase logic here
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();  // Ensure cart count is updated on page load
+});
+
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+    let cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.innerText = cartCount;
+    } else {
+        console.error("Cart count element not found");
+    }
+}
