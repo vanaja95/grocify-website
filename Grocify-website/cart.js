@@ -228,3 +228,115 @@ function updateCartCount() {
         console.error("Cart count element not found");
     }
 }
+
+
+//edit js 
+
+document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Retrieve form data
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const location = document.getElementById('location').value;
+
+    // You can save the data to a database here or use localStorage for a simple demo
+    localStorage.setItem('profileName', name);
+    localStorage.setItem('profileEmail', email);
+    localStorage.setItem('profilePhone', phone);
+    localStorage.setItem('profileLocation', location);
+
+    // Redirect back to profile page
+    window.location.href = 'profile.html';
+});
+
+
+
+
+// profile  js code
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchOrders();
+});
+function logout() {
+    alert('Logged out successfully!');
+    window.location.href = 'login.html'; // Redirect to login page
+}
+
+
+
+
+
+//review js code
+
+// Function to rotate testimonials
+function rotateTestimonials() {
+    const boxes = document.querySelectorAll('.testimonial-box');
+    let index = 0;
+
+    // Hide all testimonials
+    function hideAll() {
+        boxes.forEach(box => {
+            box.style.display = 'none';
+        });
+    }
+
+    // Show the current testimonial
+    function showCurrent() {
+        hideAll();
+        boxes[index].style.display = 'block';
+    }
+
+    // Start rotating
+    showCurrent();
+    setInterval(() => {
+        index = (index + 1) % boxes.length; // Move to the next testimonial
+        showCurrent();
+    }, 5000); // Change every 5 seconds
+}
+
+// Initialize testimonials rotation on page load
+document.addEventListener('DOMContentLoaded', rotateTestimonials);
+
+// Handle review form submission
+document.getElementById('review-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('review-name').value;
+    const text = document.getElementById('review-text').value;
+
+    // Log the data (for demonstration purposes)
+    console.log('Review submitted:', { name, text });
+
+    // You would typically send this data to a server here
+
+    // Optionally, clear the form fields
+    document.getElementById('review-form').reset();
+});
+
+
+
+// category slider js code
+
+const carousel = document.querySelector('.carousel');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+let currentIndex = 0;
+const boxWidth = document.querySelector('.category-box').offsetWidth + 24; // box width + gap
+const totalBoxes = document.querySelectorAll('.category-box').length;
+
+prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        carousel.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
+    }
+});
+
+nextButton.addEventListener('click', () => {
+    if (currentIndex < totalBoxes - Math.floor(carouselContainer.clientWidth / boxWidth)) {
+        currentIndex++;
+        carousel.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
+    }
+});
