@@ -33,9 +33,7 @@ html{
 section{
     padding: 2rem 9%;
 }
-/*section:nth-child(even){
-    background-color:#eee;
-}*/
+
 .btn{
     margin-top: 1rem;
     display: inline-block;
@@ -179,7 +177,7 @@ section{
   
 
 
-    .home .home-slider .slide{
+    .home  .swiper .slide{
         display:flex;
         align-items:center;
         flex-wrap:wrap;
@@ -187,28 +185,28 @@ section{
         padding-top:4rem;
     }
     
-    .home .home-slider .slide .content{
+    .home .swiper .slide .content{
         flex: 0 1 45rem;
         right:20px;
     }
-    .home .home-slider .slide .image{
+    .home .swiper .slide .image{
         flex: 1 1 45rem;
     }
     
-    .home .home-slider .slide .image img{
+    .home  .swiper .slide .image img{
        width: 100%;
       
     
     }
-    .home .home-slider .slide .content span{
+    .home .swiper .slide .content span{
        color:var(--green);
        font-size: 2rem;
      }
-     .home .home-slider .slide .content h3{
+     .home .swiper .slide .content h3{
         color:var(--black);
         font-size: 5rem;
       }
-      .home .home-slider .slide .content p{
+      .home .swiper .slide .content p{
         color:var(--light-color);
         font-size: 2.2rem;
         line-height: 1.5 ;
@@ -248,7 +246,78 @@ section{
      .banner-container .banner:hover img{
         transform:scale(1.2) rotate(-5deg);
      }
+     .product {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(248, 248, 248, 0.8);
+        outline-color:none;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    
+    .product h2 {
+        font-size: 4rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    
+  
+    
+  
+    
+    .product .btns {
+        margin-top: 20px;
+        display: inline-block;
+        font-size: 1.7rem;
+        color: #fff;
+        background: var(--green);
+        border-radius: .5rem;
+        cursor: pointer;
+        padding: .8rem 3rem;
+        text-align: right;
+        align-self: flex-end;
+        justify-self: end;
+    }
+    
+    .product .btns:hover {
+        background: var(--black);
+        letter-spacing: .1rem;
+    }
+    
+    /* Additional styling for the 'More Fruits' button to float right */
+    .product .more-fruits-container {
+        text-align: right;
+        margin-top: 30px;
+    }
+    
 
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /* product css starts*/
      .product-home{
         display:flex;
         align-items: center;
@@ -591,7 +660,6 @@ section{
 
 /* account page logon and sinup page start css*/
 
-
 .account-page {
     display: flex;
     align-items: center;
@@ -875,6 +943,7 @@ section{
 /* account page login and register page ends csss*/
 
 
+
 /* category page css starts*/
 
 
@@ -970,50 +1039,93 @@ section{
 .category-container {
     display: flex;
     gap: 1.5rem;
-    padding: 4rem;
-    flex-wrap: wrap; /* Ensures items wrap to next line on smaller screens */
+    padding: 2rem;
+    flex-wrap: wrap; /* Ensures items wrap to the next line on smaller screens */
+    justify-content: center; /* Centers the boxes */
 }
 
 /* Styling for individual category boxes */
 .category-box {
-    border: .3rem solid rgba(0, 0, 0, .4);
-    border-radius: .5rem;
+    border: 0.3rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
     text-align: center;
-    padding: 2rem;
-    flex: 1 1 25rem;
+    padding: 1.5rem;
+    flex: 1 1 15rem; /* Adjusted flex-basis to fit smaller screens */
+    max-width: 250px; /* Ensure the box doesn't stretch too wide */
 }
 
 .category-box img {
-    width: 80%;
-    margin: 2rem 0;
+    width: 50%;
+    margin: 1.5rem 0; /* Reduced margin to fit smaller sizes */
 }
 
 .category-box h3 {
-    font-size: 2.5rem;
+    font-size: 1.8rem; /* Reduced font size for better readability in smaller boxes */
     color: var(--black);
 }
 
 .category-box p {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced font size */
 }
 
 /* Styling for buttons */
 .button {
     margin-top: 1rem;
     display: inline-block;
-    font-size: 1.7rem;
+    font-size: 1.5rem; /* Reduced button font size */
     color: #fff;
     background: var(--green);
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     cursor: pointer;
-    padding: .8rem 3rem;
+    padding: 0.8rem 2rem; /* Reduced padding for smaller buttons */
     text-align: center; /* Ensures text is centered in the button */
 }
 
 .button:hover {
     background: var(--black);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .category-box {
+        flex: 1 1 12rem; /* Adjust the box size on smaller screens */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .category-box h3 {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .category-box p {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+    .button {
+        font-size: 1.2rem; /* Adjust button font size for smaller screens */
+        padding: 0.5rem 1.5rem; /* Reduce button padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-box {
+        flex: 1 1 10rem; /* Smaller size for mobile screens */
+        padding: 0.8rem; /* Further reduced padding */
+    }
+
+    .category-box h3 {
+        font-size: 1.2rem; /* Further reduced font size */
+    }
+
+    .category-box p {
+        font-size: 0.9rem; /* Further reduced font size */
+    }
+
+    .button {
+        font-size: 1rem; /* Smaller button font size */
+        padding: 0.4rem 1rem; /* Smaller button padding */
+    }
 }
 
 

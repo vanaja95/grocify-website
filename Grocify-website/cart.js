@@ -319,24 +319,33 @@ document.getElementById('review-form')?.addEventListener('submit', function(e) {
 
 
 // category slider js code
-
-const carousel = document.querySelector('.carousel');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-let currentIndex = 0;
-const boxWidth = document.querySelector('.category-box').offsetWidth + 24; // box width + gap
-const totalBoxes = document.querySelectorAll('.category-box').length;
-
-prevButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-        carousel.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
+document.addEventListener("DOMContentLoaded", function () {
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
+    const prevBtn = document.querySelector(".carousel-control.prev");
+    const nextBtn = document.querySelector(".carousel-control.next");
+    
+    let currentIndex = 0;
+    const carouselBoxes = document.querySelectorAll(".category-box");
+    const visibleBoxes = Math.floor(carouselWrapper.offsetWidth / carouselBoxes[0].offsetWidth);
+    
+    function updateCarousel() {
+        const boxWidth = carouselBoxes[0].offsetWidth;
+        carouselWrapper.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
     }
-});
 
-nextButton.addEventListener('click', () => {
-    if (currentIndex < totalBoxes - Math.floor(carouselContainer.clientWidth / boxWidth)) {
-        currentIndex++;
-        carousel.style.transform = `translateX(-${currentIndex * boxWidth}px)`;
-    }
+    prevBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (currentIndex < carouselBoxes.length - visibleBoxes) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+
+    window.addEventListener("resize", updateCarousel);
 });
