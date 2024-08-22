@@ -349,3 +349,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("resize", updateCarousel);
 });
+
+
