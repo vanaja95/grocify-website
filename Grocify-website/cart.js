@@ -351,3 +351,126 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+
+
+// whishlist js code
+
+
+// Wishlist Data
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+// Function to load and display wishlist items
+function loadWishlist() {
+    let wishlistContainer = document.querySelector('.wishlist-items');
+    
+    // Ensure wishlistContainer exists
+    if (!wishlistContainer) return;
+
+    wishlistContainer.innerHTML = '';
+
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+    } else {
+        wishlist.forEach((item, index) => {
+            wishlistContainer.innerHTML += `
+                <div class="wishlist-box">
+                    <img src="${item.imgSrc}" alt="${item.title}" class="product-img">
+                    <div class="detail-box">
+                        <div class="wishlist-product-title">${item.title}</div>
+                        <div class="wishlist-price">${item.price}</div>
+                    </div>
+                    <i class="fa fa-trash wishlist-remove" data-index="${index}"></i>
+                </div>
+            `;
+        });
+    }
+
+    attachWishlistEventListeners(); // Attach event listeners to wishlist items
+}
+
+// Function to add product to wishlist
+function addToWishlist(productId) {
+    let product = document.getElementById(productId);
+    if (!product) {
+        console.log('Product not found: ' + productId);
+        return;
+    }
+
+    let title = product.querySelector('h3').innerText;
+    let price = product.querySelector('.price').innerText;
+    let imgSrc = product.querySelector('img').src;
+
+    let productObj = {
+        title: title,
+        price: price,
+        imgSrc: imgSrc
+    };
+
+    // Check if product already exists in the wishlist
+    let existingProductIndex = wishlist.findIndex(item => item.title === productObj.title);
+    if (existingProductIndex === -1) {
+        wishlist.push(productObj);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistCount();  // Update wishlist count after adding product
+        showWishlistNotification(); // Show notification after adding product
+    } else {
+        alert("This item is already in your wishlist.");
+    }
+}
+
+// Function to remove item from wishlist
+function removeItemFromWishlist(index) {
+    wishlist.splice(index, 1);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    loadWishlist();
+}
+
+// Attach event listeners to wishlist items
+function attachWishlistEventListeners() {
+    document.querySelectorAll('.wishlist-remove').forEach(button => {
+        button.addEventListener('click', (event) => {
+            let index = button.getAttribute('data-index');
+            removeItemFromWishlist(index);
+        });
+    });
+}
+
+// Function to update wishlist count
+function updateWishlistCount() {
+    let wishlistCount = wishlist.length;
+
+    let wishlistCountElement = document.getElementById('wishlist-count');
+    if (wishlistCountElement) {
+        wishlistCountElement.innerText = wishlistCount;
+    } else {
+        console.error("Wishlist count element not found");
+    }
+}
+
+// Function to display a notification when item is added to wishlist
+function showWishlistNotification() {
+    var notification = document.getElementById("wishlist-notification");
+    if (notification) {
+        notification.classList.add("show");
+
+        // Hide the notification after 3 seconds
+        setTimeout(function(){
+            notification.classList.remove("show");
+        }, 3000);
+    }
+}
+
+// Attach event listeners to "Add to Wishlist" buttons (heart icons)
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fa-heart').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            let productId = button.closest('.box').id;
+            addToWishlist(productId);
+        });
+    });
+
+    updateWishlistCount(); // Ensure wishlist count is updated on page load
+    loadWishlist();       // Load wishlist items if there's a wishlist page
+});
