@@ -165,15 +165,7 @@ section{
         border-radius: 50%;
         font-size: 14px;
     }
-    #whishlist-count {
-        position: absolute;
-        top: -5px;
-        background-color: rgb(245, 182, 94);
-        color: white;
-        padding: 2px 5px;
-        border-radius: 50%;
-        font-size: 14px;
-    }
+   
 
     .icons a{
         font-size:2.5rem;
@@ -359,7 +351,9 @@ section{
 
 .product{
     flex: 1 1 40rem;
-
+    box-shadow: 0 0 10px rgba(242, 240, 240, 0.8);
+    border: 1px solid var(--light-color);
+   
 }
 
 
@@ -545,10 +539,6 @@ section{
 
 
 
-
-
-
-
 .cart {
     position: relative;
     align-items: center;
@@ -633,6 +623,7 @@ section{
 .total-title {
     font-size: 2rem;
     font-weight: 600;
+    
 }
 
 .total-price {
@@ -723,26 +714,30 @@ section{
 
 
 h2 {
+    font-size: 5rem;
     text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
+    color: var(--black);
+    margin-top: 2rem;
 }
 
 /* Wishlist Container */
 .wishlist-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
+    position: relative;
+    align-items: center;
+    max-width: 1200px;
+    margin: 50px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--light-color);
+    outline-color: var(--light-color);
 }
 
 .wishlist-content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 /* Wishlist Item Box */
@@ -750,38 +745,39 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem 9%;
+    margin-top: 1rem;
 }
 
 .wishlist-box img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
 
 .detail-box {
-    flex-grow: 1;
-    margin-left: 20px;
+    column-gap: 20rem;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    font-size: 1.5rem;
 }
 
 .wishlist-product-title {
-    font-size: 18px;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 5px;
+    color:var(--black)
 }
 
 .wishlist-price {
-    font-size: 16px;
-    color: #555;
+    font-weight: 500;
+    color: var(--black);
 }
 
 .wishlist-remove {
     font-size: 18px;
-    color: red;
+    color:var(--black);
     cursor: pointer;
 }
 
@@ -804,6 +800,16 @@ h2 {
 
 .add-to-cart-button:hover {
     background-color: var(--black);
+}
+.wishlist-quantity {
+    border: 1px solid var(--light-color);
+    outline-color: var(--light-color);
+    width: 8.4rem;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;
+    gap:2rem;
 }
 
 
@@ -1179,6 +1185,7 @@ h2 {
     justify-content: center;
     flex-wrap: wrap;
     gap: 8.5rem;
+    
 }
 
 /* Styling for category image section */
@@ -1203,6 +1210,7 @@ h2 {
     text-align: center; /* Center text within the content box */
     position: relative; /* Change to relative if absolute causes issues */
     padding: 2rem; /* Add padding to avoid content sticking to edges */
+    
 }
 
 .category-content .sn {
@@ -1232,6 +1240,7 @@ h2 {
     padding: 2rem;
     flex-wrap: wrap; /* Ensures items wrap to the next line on smaller screens */
     justify-content: center; /* Centers the boxes */
+ 
 }
 
 /* Styling for individual category boxes */
@@ -1244,6 +1253,7 @@ h2 {
     padding: 1.5rem;
     flex: 1 1 15rem; /* Adjusted flex-basis to fit smaller screens */
     max-width: 250px; /* Ensure the box doesn't stretch too wide */
+  
 }
 
 .category-box img {

@@ -1,50 +1,3 @@
-
-
-let menu = document.querySelector('#menu-bar');
-let navbar = document.querySelector('.navbar');
-let header = document.querySelector('.header-2');
-
-// Add click event listener to the menu icon
-menu.addEventListener('click', () => {
-    menu.classList.toggle('fa-times');
-    navbar.classList.toggle('active');
-});
-
-// Optional: Close the menu when clicking outside
-document.addEventListener('click', (event) => {
-    if (!menu.contains(event.target) && !navbar.contains(event.target)) {
-        menu.classList.remove('fa-times');
-        navbar.classList.remove('active');
-    }
-});
-
-
-
-//searchbar js  
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBox = document.getElementById("search-box");
-
-    searchBox.addEventListener("input", () => {
-        const searchQuery = searchBox.value.toLowerCase();
-        const productBoxes = document.querySelectorAll(".box");
-
-        productBoxes.forEach(box => {
-            const productName = box.querySelector("h3").textContent.toLowerCase();
-            
-            if (productName.includes(searchQuery)) {
-                box.style.display = "block"; // Show product
-            } else {
-                box.style.display = "none"; // Hide product
-            }
-        });
-    });
-});
-
-
-
-// cart and wishlist js code
-
-
 // Initialize wishlist and cart
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -231,7 +184,7 @@ function updateTotal() {
         return sum + (price * item.quantity);
     }, 0);
     
-    document.querySelector('.total-price').innerText = `Total:₹${total.toFixed(2)}`;
+    document.querySelector('.total-price').innerText = `Total: ₹${total.toFixed(2)}`;
 }
 
 // Function to remove item from cart
@@ -286,22 +239,6 @@ function showNotification() {
     }
 }
 
-document.querySelector('.btn').addEventListener('click', function() {
-    // Clear cart items from the cart array
-    cart = [];
-
-    // Clear cart items from the page
-    document.querySelector('.cart-contant').innerHTML = '<p>Your cart is empty.</p>';
-
-    // Clear cart items from local storage
-    localStorage.removeItem('cart'); // Use the correct key, which is 'cart'
-
-    // Reset the total, GST, and grand total prices
-    document.querySelector('.total-price').textContent = '₹0';
-   
-    // Optionally, show a message to the user that the cart is cleared
-    alert('Your cart has been cleared!');
-});
 // Add to cart from product page
 function addToCart(productId) {
     let product = document.getElementById(productId);
@@ -331,7 +268,7 @@ function addToCart(productId) {
 
 // Event listeners for "Add to Wishlist" and "Add to Cart" buttons
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.box .fa-heart').forEach(button => {
+    document.querySelectorAll('.fa-heart').forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             let productId = button.closest('.box').id;
@@ -356,91 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-//edit js 
-
-document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // Retrieve form data
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const location = document.getElementById('location').value;
-
-    // You can save the data to a database here or use localStorage for a simple demo
-    localStorage.setItem('profileName', name);
-    localStorage.setItem('profileEmail', email);
-    localStorage.setItem('profilePhone', phone);
-    localStorage.setItem('profileLocation', location);
-
-    // Redirect back to profile page
-    window.location.href = 'profile.html';
-});
-
-
-
-
-// profile  js code
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchOrders();
-});
-function logout() {
-    alert('Logged out successfully!');
-    window.location.href = 'login.html'; // Redirect to login page
-}
-
-
-
-
-
-//review js code
-
-// Function to rotate testimonials
-function rotateTestimonials() {
-    const boxes = document.querySelectorAll('.testimonial-box');
-    let index = 0;
-
-    // Hide all testimonials
-    function hideAll() {
-        boxes.forEach(box => {
-            box.style.display = 'none';
-        });
-    }
-
-    // Show the current testimonial
-    function showCurrent() {
-        hideAll();
-        boxes[index].style.display = 'block';
-    }
-
-    // Start rotating
-    showCurrent();
-    setInterval(() => {
-        index = (index + 1) % boxes.length; // Move to the next testimonial
-        showCurrent();
-    }, 5000); // Change every 5 seconds
-}
-
-// Initialize testimonials rotation on page load
-document.addEventListener('DOMContentLoaded', rotateTestimonials);
-
-// Handle review form submission
-document.getElementById('review-form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('review-name').value;
-    const text = document.getElementById('review-text').value;
-
-    // Log the data (for demonstration purposes)
-    console.log('Review submitted:', { name, text });
-
-    // You would typically send this data to a server here
-
-    // Optionally, clear the form fields
-    document.getElementById('review-form').reset();
-});
 
 
 
@@ -452,38 +304,5 @@ document.getElementById('review-form')?.addEventListener('submit', function(e) {
 
 
 
-// account js code signin and signup
-
-
-const container = document.getElementById('container');
-const registerBtn = document.getElementById('register');
-const loginBtn = document.getElementById('login');
-const forgotPasswordLink = document.getElementById('forgot-password-link');
-const backToSignInLink = document.getElementById('back-to-sign-in');
-
-// Handle Register button click
-registerBtn.addEventListener('click', () => {
-    container.classList.add("active");
-});
-
-// Handle Login button click
-loginBtn.addEventListener('click', () => {
-    container.classList.remove("active");
-});
-
-// Handle Forgot Password link click
-forgotPasswordLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector('.form-container.sign-in').style.display = 'none';
-    document.querySelector('.form-container.sign-up').style.display = 'none';
-    document.querySelector('.form-container.forgot-password').style.display = 'block';
-});
-
-// Handle Back to Sign In link click
-backToSignInLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector('.form-container.forgot-password').style.display = 'none';
-    document.querySelector('.form-container.sign-in').style.display = 'block';
-});
 
 
