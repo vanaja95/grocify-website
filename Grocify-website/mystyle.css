@@ -351,8 +351,6 @@ section{
 
 .product{
     flex: 1 1 40rem;
-    box-shadow: 0 0 10px rgba(242, 240, 240, 0.8);
-    border: 1px solid var(--light-color);
    
 }
 

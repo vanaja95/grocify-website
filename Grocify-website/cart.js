@@ -126,6 +126,27 @@ function updateWishlistCount() {
     }
 }
 
+
+
+
+document.querySelector('.btn').addEventListener('click', function() {
+    // Clear wishlist items from the cart array
+    wishlist = [];
+
+    // Clear wishlist items from the page
+    document.querySelector('.wishlist-content').innerHTML = '<p>Your wishlist is empty.</p>';
+
+    // Clear cart items from local storage
+    localStorage.removeItem('wishlist'); // Use the correct key, which is 'wishlist'
+   
+    // Optionally, show a message to the user that the cart is cleared
+    alert('Your wishlist has been cleared!');
+});
+
+
+
+
+
 // Function to display a notification when an item is added to the wishlist
 function showWishlistNotification() {
     var notification = document.getElementById("wishlist-notification");
@@ -445,13 +466,6 @@ document.getElementById('review-form')?.addEventListener('submit', function(e) {
 
 
 
-
-
-
-
-
-
-
 // account js code signin and signup
 
 
@@ -485,5 +499,7 @@ backToSignInLink.addEventListener('click', (e) => {
     document.querySelector('.form-container.forgot-password').style.display = 'none';
     document.querySelector('.form-container.sign-in').style.display = 'block';
 });
+
+
 
 
