@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 box.style.display = "none"; // Hide product
             }
+            
         });
     });
 });
