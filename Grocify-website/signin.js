@@ -1,3 +1,26 @@
+
+let menu = document.querySelector('#menu-bar');
+let navbar = document.querySelector('.navbar');
+let header = document.querySelector('.header-2');
+
+// Add click event listener to the menu icon
+menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+});
+
+// Optional: Close the menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && !navbar.contains(event.target)) {
+        menu.classList.remove('fa-times');
+        navbar.classList.remove('active');
+    }
+});
+
+
+
+
+
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
@@ -68,7 +91,7 @@ document.getElementById("signInForm").addEventListener("submit", function(e) {
     const email = document.getElementById("signInEmail").value;
     const password = document.getElementById("signInPassword").value;
 
-    fetch("http://localhost:8080/api/login", {
+    fetch("http://localhost:9091/api/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
