@@ -578,5 +578,59 @@ backToSignInLink.addEventListener('click', (e) => {
 });
 
 
+// Select the scroll up icon element
+const scrollUpIcon = document.getElementById('scrollup-icon');
 
+// Function to show or hide the scroll up icon
+window.onscroll = function() {
+  if (window.scrollY > 300) { // Show icon after scrolling down 300px
+    scrollUpIcon.classList.add('show');
+  } else {
+    scrollUpIcon.classList.remove('show');
+  }
+};
+
+// Function to scroll to the top when the icon is clicked
+scrollUpIcon.addEventListener('click', function(e) {
+  e.preventDefault(); // Prevent default anchor behavior
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scroll to the top
+  });
+});
+
+
+
+
+
+//contact section javascript start
+
+
+// Function to handle the click event on the contact boxes
+// Function to handle the click event on the contact boxes
+function openphone() {
+    alert("This feature is currently unavailable.");
+  }
+  
+  // Function to handle form submission
+  document.querySelector('.btn').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent the form from submitting
+  
+    // Get the form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+  
+    // Simple validation to check if all fields are filled
+    if (name === "" || email === "" || message === "") {
+      alert("Please fill in all fields.");
+    } else {
+      // Perform form submission logic here, such as sending the data to a server
+      alert("Message sent! We'll get back to you shortly.");
+  
+      // Reset the form after submission
+      document.getElementById('contact-form').reset();
+    }
+  });
+  
 

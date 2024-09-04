@@ -1276,7 +1276,7 @@ h2 {
 .button {
     margin-top: 1rem;
     display: inline-block;
-    font-size: 1.5rem; /* Reduced button font size */
+    font-size: 1.5rem; 
     color: #fff;
     background: var(--green);
     border-radius: 0.5rem;
@@ -1431,143 +1431,147 @@ h2 {
 /*  profile page css ends*/
 
 
-/*review page css code starts*/
+/*contact page css code starts*/
 
-a{
-    text-decoration: none;
-}
-#testimonials{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width:100%;
-}
-.testimonial-heading{
-    letter-spacing: 1px;
-    margin: 30px 0px;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.testimonial-heading h1{
-    font-size: 2.2rem;
-    font-weight: 500;
-    background-color:#ace6f3;;
+
+/* General styles for the contact section */
+main {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .contact-header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
     color:var(--black);
-    padding: 10px 20px;
-}
-.testimonial-heading span{
-    font-size: 1.3rem;
+  }
+  
+  /* Contact container and boxes */
+  .contact-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .contact-sending{
+    background-color: white;
+    padding: 80px;
+    border-radius: 15px;
+    box-shadow: 1 1px 2px rgba(0, 0, 0, 0.8);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .contact-box {
+    flex: 1;
+    min-width: 250px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-box:hover {
+    background-color: #e2e2e2;
+  }
+  
+  /* Icons in the contact boxes */
+  .contant-icons i {
+    font-size: 40px;
     color:var(--green);
     margin-bottom: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-.testimonial-box-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width:100%;
-}
-.testimonial-box{
-    width:500px;
-    box-shadow: (2px 2px 30px blue);
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 15px;
-    cursor: pointer;
-}
-
-@media(max-width:1060px){
-    .testimonial-box{
-        width:45%;
-        padding: 10px;
-    }
-}
-@media(max-width:790px){
-    .testimonial-box{
-        width:100%;
-    }
-    .testimonial-heading h1{
-        font-size: 1.4rem;
-    }
-}
-@media(max-width:340px){
-    .box-top{
-        flex-wrap: wrap;
-        margin-bottom: 10px;
-    }
-    .reviews{
-        margin-top: 10px;
-    }
-}
-::selection{
-    color: #ffffff;
-    background-color: green;
-}
-/* General Styles for the Form */
-#review-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Form Heading */
-#review-form h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+  }
+  
+  /* Title and content inside the contact boxes */
+  .contact-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
     color:var(--black);
-    text-align: center;
-}
-
-/* Form Inputs */
-#review-form input[type="text"],
-#review-form textarea {
-    width: 100%;
+  }
+  
+  .cantact-contant {
+    font-size: 16px;
+    color:var(--light-color);
+  }
+  
+  /* Styles for the form */
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  
+  #contact-form .name,
+  #contact-form .email{
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
-}
-
-/* Form Textarea */
-#review-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-/* Submit Button */
-#review-form button {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color:var(--green);
-    color: #fff;
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+  }
+  #contact-form .message{
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+   padding-bottom: 80px;
+  }
+  
 
-#review-form button:hover {
-    background-color: #0056b3;
-}
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
 
-/*review page css code starts*/
+
+/*contact page css code ends*/
 
 
 
-
-
+/* Style for the scroll up icon */
+#scrollup-icon {
+    position: fixed;        
+    bottom: 30px;             
+    right: 30px;              
+    background-color: var(--green);   
+    color: white;              
+    padding: 10px 15px;        
+    border-radius: 50%;        
+    cursor: pointer;           
+    z-index: 1000;             
+    display: none; 
+    transition: opacity 0.3s ease; 
+    
+  }
+  
+  #scrollup-icon.show {
+    display: block;   
+   
+  }
+  
+  .scrollup-link {
+    color: white;              /* Color of the arrow */
+    text-decoration: none;     /* Remove underline */
+    font-size: 20px;           /* Size of the arrow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
 
 
 
