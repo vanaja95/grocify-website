@@ -64,16 +64,19 @@ function loadWishlist() {
         wishlist.forEach((item, index) => {
             wishlistContainer.innerHTML += `
                 <div class="wishlist-box">
-                    <img src="${item.imgSrc}" alt="${item.title}" class="product-img">
-                    <div class="detail-box">
-                        <div class="wishlist-product-title">${item.title}</div>
-                        <div class="wishlist-price">${item.price}</div>
-                        <!-- Add quantity input for wishlist items -->
+                    <div class="cart-column remove">
+                        <i class="fa fa-trash wishlist-remove" data-index="${index}"></i>
+                    </div>
+                    <div class="cart-column image">
+                        <img src="${item.imgSrc}" alt="${item.title}" class="product-img">
+                    </div>
+                    <div class="cart-column item">${item.title}</div>
+                    <div class="cart-column price">${item.price}</div>
+                    <div class="cart-column quantity">
                         <input type="number" value="1" class="wishlist-quantity" data-index="${index}">
                     </div>
-                    <div class="wishlist-actions">
+                    <div class="cart-column tlt">
                         <button class="add-to-cart-button" data-index="${index}">Add to Cart</button>
-                        <i class="fa fa-trash wishlist-remove" data-index="${index}"></i>
                     </div>
                 </div>
             `;
@@ -229,14 +232,15 @@ function loadCart() {
     } else {
         cart.forEach((item, index) => {
             cartContainer.innerHTML += `
-                <div class="cart-box">
-                    <img src="${item.imgSrc}" alt="${item.title}" class="product-img">
-                    <div class="detail-box">
-                        <div class="cart-product-title">${item.title}</div>
-                        <div class="cart-price">${item.price}</div>
+              <div class="cart-box">
+                    <div class="cart-remove" data-index="${index}"><i class="fa fa-trash"></i></div>
+                    <div><img src="${item.imgSrc}" alt="${item.title}" class="product-img"></div>
+                    <div class="cart-product-title">${item.title}</div>
+                    <div class="cart-price">${item.price}</div>
+                    <div>
                         <input type="number" value="${item.quantity}" class="cart-quantity" data-index="${index}">
                     </div>
-                    <i class="fa fa-trash cart-remove" data-index="${index}"></i>
+                    <div class="cart-total">₹${(parseFloat(item.price.replace('₹', '')) * item.quantity).toFixed(2)}</div>
                 </div>
             `;
         });
@@ -252,8 +256,9 @@ function updateTotal() {
         let price = parseFloat(item.price.replace('₹', ''));
         return sum + (price * item.quantity);
     }, 0);
+   
     
-    document.querySelector('.total-price').innerText = `Total:₹${total.toFixed(2)}`;
+    document.querySelector('.total-price').innerText = `grand Total:₹${total.toFixed(2)}`;
 }
 
 // Function to remove item from cart
@@ -278,7 +283,21 @@ function quantityChanged(event) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateTotal();
     updateCartCount();
+    updateCartItemPrice(index);
 }
+ 
+function updateCartItemPrice(index) {
+    const item = cart[index];
+    const itemPrice = parseFloat(item.price.replace('₹', ''));
+    const itemTotal = itemPrice * item.quantity;
+
+    // Find the corresponding cart item element and update its price
+    const cartItemElement = document.querySelector(`.cart-box:nth-child(${parseInt(index) + 1}) .cart-total`);
+    if (cartItemElement) {
+        cartItemElement.innerText = `₹${itemTotal.toFixed(2)}`;
+    }
+}
+
 
 // Attach event listeners to cart items
 function attachCartEventListeners() {
